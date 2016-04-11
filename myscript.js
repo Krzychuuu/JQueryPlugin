@@ -4,6 +4,6 @@ $(document).ready(function (){
 
 	$("#surname").validateText({pattern: /^[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłóńśźż]*$/});
 
-//	$("#email").validateEmail();
+	$("#email").validateEmail();
 
 });
