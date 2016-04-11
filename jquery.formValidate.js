@@ -40,25 +40,19 @@
 		var submit = form.find('input[type="submit"]');
 		var inputs = form.find('input[type="text"]');
 		
-		var error;
+		var validated = false;
 		$(inputs).each(function()
 		{
- 			var input = $(this);
+			if($(this).hasClass('invalid') || !$(this).val()){
+				validated = false;
+				console.log(validated);
+				console.log($(this));
+				return false;
+			}
+			validated = true;
+		})
 
- 			if (input.hasClass("invalid"))
- 			{
- 				error = true;
- 			}
-		});
-
-		if (error)
-		{
-			submit.attr('disabled','disabled');
-		}
-		else
-		{
-			submit.removeAttr('disabled');
-		}
+		validated ? submit.attr('disabled',false) : submit.attr('disabled',true);
 	};
 
 })(jQuery);
