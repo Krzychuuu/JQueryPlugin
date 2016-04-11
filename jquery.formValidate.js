@@ -45,12 +45,10 @@
 		{
 			if($(this).hasClass('invalid') || !$(this).val()){
 				validated = false;
-				console.log(validated);
-				console.log($(this));
 				return false;
 			}
 			validated = true;
-		})
+		});
 
 		validated ? submit.attr('disabled',false) : submit.attr('disabled',true);
 	};
