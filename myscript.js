@@ -6,4 +6,8 @@ $(document).ready(function (){
 
 	$("#email").validateEmail();
 
+	$("#password1").validatePassword1();
+
+	$("#password2").validatePassword2();
+
 });
