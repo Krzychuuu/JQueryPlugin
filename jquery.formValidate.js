@@ -8,21 +8,7 @@
 
 		var pattern = new RegExp(settings.pattern);
 
-		$(this).change(function ()
-		{
-
-			if (pattern.test(this.value))
-			{
-				if($(this).hasClass("invalid");
-				{
-					$(this).removeClass("invalid")
-				}
-			}
-			else
-			{
-				$(this).addClass("invalid")
-			}
-		});
+			$(this).toggleClass("invalid", !pattern.test(this.value));
 		
 		return this;
 	};
@@ -35,21 +21,7 @@
 
 		var pattern = new RegExp(settings.pattern);
 
-		$(this).change(function ()
-		{
-			if (pattern.test(this.value))
-			{
-				if($(this).hasClass("invalid"))
-				{
-					$(this).removeClass("invalid");
-				}
-			}
-			else
-			{
-				$(this).addClass("invalid");
-			}
-
-		});
+			$(this).toggleClass("invalid", !pattern.test(this.value));
 		
 		return this;
 	};
