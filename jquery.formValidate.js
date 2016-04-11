@@ -39,11 +39,14 @@
 		{
 			if (pattern.test(this.value))
 			{
+				if($(this).hasClass("invalid"))
 				{
+					$(this).removeClass("invalid");
 				}
 			}
 			else
 			{
+				$(this).addClass("invalid");
 			}
 
 		});
