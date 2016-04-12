@@ -55,7 +55,7 @@
 		$(this).change(function ()
 		{
 			$(this).toggleClass("invalid", $("#password1").val()!=$("#password2").val());
-			pattern.test(this.value) ? $(this).next("span").remove() : $(this).after("<span class='error' id='post'>Passwords do not match</span>");
+			$("#password1").val()==$("#password2").val() ? $(this).next("span").remove() : $(this).after("<span class='error' id='post'>Passwords do not match</span>");
 			checkInputs(this);
 		});
 		
@@ -90,10 +90,12 @@
 		if(temp.length > 5) strength++;
 		console.log(strength);
 		if(temp.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength ++;
-		if(temp.match(/([a-zA-Z])/) && password.match(/([0-9])/))  strength ++;
-		
-
 		console.log(strength);
+		if(temp.match(/([a-zA-Z])/) && temp.match(/([0-9])/))  strength ++;
+		console.log(strength);
+		if(temp.length %2 == 1) strength ++;
+		console.log(strength);
+		return strength;
 	}
 
 })(jQuery);
