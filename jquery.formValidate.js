@@ -41,8 +41,12 @@
 		$(this).change(function ()
 		{
 			$("#password2").val("");
-			var temp = $("#password1").val();
-			checkPassStrength(temp);
+			$(this).next("span").remove()
+			$(this).after("<span class='passwordStrength' id='passwordStrength'>Password strength: </span>");
+			for(var i = 0; i < checkPassStrength($("#password1").val()); i++)
+			{
+				$("#passwordStrength").append("*");
+			}
 
 			checkInputs(this);
 		});
