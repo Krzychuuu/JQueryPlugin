@@ -44,7 +44,7 @@
 			if(passInitialCheck($(this))){
 				$(this).next("span").remove()
 				$(this).after("<span class='passwordStrength' id='passwordStrength'>Password strength: </span>");
-				for(var i = 0; i <= checkPassStrength($("#password1").val()); i++)
+				for(var i = 0; i <= checkPassStrength($(this).val()); i++)
 				{
 					$("#passwordStrength").append("*");
 				}
@@ -89,21 +89,16 @@
 
 	var passInitialCheck = function(temp)
 	{
-		console.log(temp.val());
-		console.log($(this));
-		console.log(($("#name").val()+$("#surname").val()));
 		if(temp.val() == ($("#name").val()+$("#surname").val()))
 		{
-			console.log("wchodze1");
 			$("#password1").next("span").remove()
-			$("#password1").after("<span class='error'>Password cant be like NameSurname</span>");
+			$("#password1").after("<span class='error'>Password cannot be like NameSurname</span>");
 			return false;
 		}
 		if(temp.val() == $("#email").val())
 		{
-			console.log("wchodze2");
 			$("#password1").next("span").remove()
-			$("#password1").after("<span class='error'>Password cant be like email</span>");
+			$("#password1").after("<span class='error'>Password cannot be like email</span>");
 			return false;s
 		}
 		return true;
