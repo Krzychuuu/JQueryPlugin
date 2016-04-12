@@ -29,6 +29,7 @@
 		$(this).change(function ()
 		{
 			$(this).toggleClass("invalid", !pattern.test(this.value));
+			pattern.test(this.value) ? $(this).next("span").remove() : $(this).after("<span class='error' id='post'>Must be email format</span>");
 			checkInputs(this);
 		});
 		
