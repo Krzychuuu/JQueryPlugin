@@ -41,12 +41,14 @@
 		$(this).change(function ()
 		{
 			$("#password2").val("");
-			$(this).next("span").remove()
-			$(this).after("<span class='passwordStrength' id='passwordStrength'>Password strength: </span>");
-			for(var i = 0; i < checkPassStrength($("#password1").val()); i++)
-			{
-				$("#passwordStrength").append("*");
-			}
+			if(passInitialCheck($(this))){
+				$(this).next("span").remove()
+				$(this).after("<span class='passwordStrength' id='passwordStrength'>Password strength: </span>");
+				for(var i = 0; i <= checkPassStrength($("#password1").val()); i++)
+				{
+					$("#passwordStrength").append("*");
+				}
+			}			
 
 			checkInputs(this);
 		});
@@ -85,20 +87,36 @@
 		validated ? submit.attr('disabled',false) : submit.attr('disabled',true);
 	};
 
+	var passInitialCheck = function(temp)
+	{
+		console.log(temp.val());
+		console.log($(this));
+		console.log(($("#name").val()+$("#surname").val()));
+		if(temp.val() == ($("#name").val()+$("#surname").val()))
+		{
+			console.log("wchodze1");
+			$("#password1").next("span").remove()
+			$("#password1").after("<span class='error'>Password cant be like NameSurname</span>");
+			return false;
+		}
+		if(temp.val() == $("#email").val())
+		{
+			console.log("wchodze2");
+			$("#password1").next("span").remove()
+			$("#password1").after("<span class='error'>Password cant be like email</span>");
+			return false;s
+		}
+		return true;
+	}
+
 	var checkPassStrength = function(temp)
 	{
-		console.log(temp);
 		var strength = 0;
 		if(temp.length > 3) strength++;
-		console.log(strength);
 		if(temp.length > 5) strength++;
-		console.log(strength);
 		if(temp.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength ++;
-		console.log(strength);
 		if(temp.match(/([a-zA-Z])/) && temp.match(/([0-9])/))  strength ++;
-		console.log(strength);
-		if(temp.length %2 == 1) strength ++;
-		console.log(strength);
+		if((temp.length %2 == 1) && (temp.length > 5)) strength ++;
 		return strength;
 	}
 
