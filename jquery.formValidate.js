@@ -68,32 +68,12 @@
 		{
 			if($(this).hasClass('invalid') || !$(this).val()){
 				validated = false;
-				// throwError($(this));
 				return false;
 			}
 			validated = true;
-			removeErrors();
 		});
 
 		validated ? submit.attr('disabled',false) : submit.attr('disabled',true);
 	};
-
-	// var throwError = function(obj)
-	// {
-	// 	console.log($(obj));
-	// 	switch(obj)
-	// 	{
-	// 		case name:
-	// 			$(this).after("<span class='error' id='post'>Start with letter</span>");
-	// 		case surname:
-	// 			$(this).after("<span class='error' id='post'>Start with letter</span>");
-	// 		case email:
-	// 			$(this).after("<span class='error' id='post'>Not email format</span>");
-	// 		case password1:
-	// 			$(this).after("<span class='error' id='post'>Bad password</span>");
-	// 		case password2:
-	// 			$(this).after("<span class='error' id='post'>Passwords don't match</span>");
-	// 	}
-	// }
 
 })(jQuery);
