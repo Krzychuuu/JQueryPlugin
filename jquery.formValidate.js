@@ -120,4 +120,26 @@
 		return strength;
 	}
 
+	$.fn.validatePostCode = function(options){
+        
+        var settings = $.extend({
+			pattern: "/[0-9]{2}-[0-9]{3}$/"
+		}, options);
+
+		var pattern = new RegExp(settings.pattern);
+
+        $(this).change(function(){
+        	$(this).toggleClass("invalid", !pattern.test(this.value));
+        	$(this).next("span").remove()
+            pattern.test(this.value) ? getCity(this.value) : $(this).after("<span class='error' id='post'>Enter XX-XXX format</span>");    
+        });
+
+        var getCity = function(code)
+        {
+        	console.log(code.value());
+        }
+
+        return this;
+    };
+
 })(jQuery);

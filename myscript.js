@@ -10,4 +10,6 @@ $(document).ready(function (){
 
 	$("#password2").validatePassword2();
 
+	$("#postcode").validatePostCode();
+
 });
