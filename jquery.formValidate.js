@@ -38,7 +38,7 @@
 
 	$.fn.validatePassword1 = function(options) 
 	{
-		$(this).change(function ()
+		$(this).keypress(function ()
 		{
 			$("#password2").val("");
 			if(passInitialCheck($(this))){
@@ -101,6 +101,7 @@
 			$("#password1").after("<span class='error'>Password cannot be like email</span>");
 			return false;s
 		}
+
 		return true;
 	}
 
@@ -112,6 +113,10 @@
 		if(temp.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) strength ++;
 		if(temp.match(/([a-zA-Z])/) && temp.match(/([0-9])/))  strength ++;
 		if((temp.length %2 == 1) && (temp.length > 5)) strength ++;
+		for (var i = 0; i<temp.length; i++)
+			{
+				if(temp[i].match(/@/)) strength ++;
+			}
 		return strength;
 	}
 
