@@ -142,8 +142,6 @@
             type: "GET",
             dataType: "json",
             success: function(data) {
-            	console.log(data);
-            	console.log(tempcode);
             	$.each(data, function(key, value){
             		if(key == tempcode) $("#city").val(value);
             	});
