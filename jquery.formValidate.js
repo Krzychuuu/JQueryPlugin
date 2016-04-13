@@ -123,7 +123,7 @@
 	$.fn.validatePostCode = function(options){
         
         var settings = $.extend({
-			pattern: "/[0-9]{2}-[0-9]{3}$/"
+			pattern: "[0-9]{2}-[0-9]{3}$"
 		}, options);
 
 		var pattern = new RegExp(settings.pattern);
@@ -136,7 +136,7 @@
 
         var getCity = function(code)
         {
-        	console.log(code.value());
+        	console.log(code);
         }
 
         return this;
