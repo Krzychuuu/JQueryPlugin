@@ -42,7 +42,7 @@
 		{
 			$("#password2").val("");
 			if(passInitialCheck($(this))){
-				$(this).next("span").remove()
+				$(this).next("span").remove();
 				$(this).after("<span class='passwordStrength' id='passwordStrength'>Password strength: </span>");
 				for(var i = 0; i <= checkPassStrength($(this).val()); i++)
 				{
@@ -91,19 +91,19 @@
 	{
 		if(temp.val() == ($("#name").val()+$("#surname").val()))
 		{
-			$("#password1").next("span").remove()
+			$("#password1").next("span").remove();
 			$("#password1").after("<span class='error'>Password cannot be like NameSurname</span>");
 			return false;
 		}
 		if(temp.val() == $("#email").val())
 		{
-			$("#password1").next("span").remove()
+			$("#password1").next("span").remove();
 			$("#password1").after("<span class='error'>Password cannot be like email</span>");
-			return false;s
+			return false;
 		}
 
 		return true;
-	}
+	};
 
 	var checkPassStrength = function(temp)
 	{
@@ -118,7 +118,7 @@
 				if(temp[i].match(/@/)) strength ++;
 			}
 		return strength;
-	}
+	};
 
 	$.fn.validatePostCode = function(options){
         
@@ -130,16 +130,25 @@
 
         $(this).change(function(){
         	$(this).toggleClass("invalid", !pattern.test(this.value));
-        	$(this).next("span").remove()
+        	$(this).next("span").remove();
             pattern.test(this.value) ? getCity(this.value) : $(this).after("<span class='error' id='post'>Enter XX-XXX format</span>");    
         });
+    }
 
-        var getCity = function(code)
-        {
-        	console.log(code);
-        }
-
-        return this;
+    var getCity = function(tempcode)
+    {
+        $.ajax({
+            url: "codes.json",
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+            	console.log(data);
+            	console.log(tempcode);
+            	$.each(data, function(key, value){
+            		if(key == tempcode) $("#city").val(value);
+            	});
+            }
+        });
     };
 
 })(jQuery);
